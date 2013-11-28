@@ -10,28 +10,36 @@ Versión preliminar de las clases a implementar.
 
 Segunda entrega (3 de diciembre)
 =====
-Carga de grafos a partir de archivos funcional, incluyendo el modelado de estos.
+Adaptación de las abstracciones y modelos de clases, de forma que sigan el patrón de diseño Strategy.
+
+El modelo de grafos implementado completamente, usando diferentes backends de forma que se pueda comparar su rendimiento en siguientes entregas. Estos backends implementarán una interfaz común.
+
+Carga de grafos a partir de archivos funcional, incluyendo el modelado de estos. Se lanzan excepciones, cuando los archivos de texto no son parseables.
 
 Tercera entrega (12 de diciembre)
 =====
 Crear grafo a partir de la consola.
 
-Implementación de reporte de grafo (métodos de la clase GraphReporter).
+Implementación de reportes de caracteristicas de grafo (Densidad del grafo, ¿es circuito, arbol, camino hamiltoniano, ciclo euleriano, etc.?).
 
-Implementación parcial de la clase Algorithm.
+Implementación de generadores de grafos automatizados, ya sean con caracteristicas definidas o aleatorios.
+
+Implementación parcial de algoritmos ejecutables sobre grafos.
 
 Cuarta entrega (17 de diciembre)
 =====
 Guardar grafos creados en el programa.
 
-Implementación completa de la clase Algorithm.
+Implementación completa de algoritmos ejecutables sobre grafos.
+
+La ejecución de los algoritmos es registrada, a modo de benchmark, de forma que se pueda evidenciar los mejores y peores casos para cada algoritmo.
 
 Versión básica de la interfaz gráfica.
+
+Unit Test para comprobar funcionalidad de los algoritmos.
 
 Pre-sustentación (14 de enero)
 =====
 Interfaz gráfica completa.
-
-Unit Test para comprobar funcionalidad de los algoritmos.
 
 Documentación en Javadoc.
