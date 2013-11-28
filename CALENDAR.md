@@ -6,7 +6,7 @@ Diagrama de clases.
 
 Diagrama de casos de uso.
 
-Versión preliminar de las clases a implementar.
+Versión preliminar de las clases a implementar (esqueleto de clases).
 
 Segunda entrega (3 de diciembre)
 =====
