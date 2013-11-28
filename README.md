@@ -32,3 +32,4 @@ Funcionalidades y características adicionales
 Otras funcionalidades que tal vez podrían agregarse
 * Creación de grafos de forma grafica (WYSIWYG)
 * Algoritmos de busqueda de arboles
+* Ser flexible con la implementación interna de grafos. Puede que se adapte de acuerdo al grado de estos para optimizar el rendimiento y usar la representación interna que mejor convenga.
