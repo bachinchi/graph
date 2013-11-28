@@ -15,8 +15,8 @@ Funcionalidades y características mínimas
 ** Conectividad
 ** Isomorfismo de grafos
 ** Algoritmos de camino más corto
-*** Dijkstra
-*** Floyd - Warshall
+** Dijkstra
+** Floyd - Warshall
 ** Algoritmo de Prim
 ** Algoritmo de Kruskal
 ** Algoritmo de Flujo Maximo (Maximum flow)
