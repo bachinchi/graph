@@ -36,7 +36,7 @@ La ejecución de los algoritmos es registrada, a modo de benchmark, de forma que
 
 Versión básica de la interfaz gráfica.
 
-Unit Test para comprobar funcionalidad de los algoritmos.
+Test Unitarios que comprueben la salida de cada uno de los algoritmos implementados.
 
 Pre-sustentación (14 de enero)
 =====
