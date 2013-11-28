@@ -11,8 +11,9 @@ public class GraphLoader {
 
         /**
          * Code based on 2013-10-15 class example.
+         * TODO: Throw TextFileFormatException when the text file isnt correct.
          */
-        private static ArrayList<int[]> readFile(final String fileName) {
+        private static ArrayList<int[]> readFile(final String fileName) throws TextFileFormatException {
                 final ArrayList<int[]> answer = new ArrayList<int[]>();
 
                 BufferedReader br = null;
