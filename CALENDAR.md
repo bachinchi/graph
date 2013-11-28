@@ -24,13 +24,13 @@ Implementación de reportes de caracteristicas de grafo (Densidad del grafo, ¿e
 
 Implementación de generadores de grafos automatizados, ya sean con caracteristicas definidas o aleatorios.
 
-Implementación parcial de algoritmos ejecutables sobre grafos.
+Implementación de algunos algoritmos ejecutables sobre grafos (Floyd - Warshall, otros algoritmos de implementación fácil).
 
 Cuarta entrega (17 de diciembre)
 =====
 Guardar grafos creados en el programa.
 
-Implementación completa de algoritmos ejecutables sobre grafos.
+Implementación de algoritmos complejos sobre los grafos (Dijkstra, etc.)
 
 La ejecución de los algoritmos es registrada, a modo de benchmark, de forma que se pueda evidenciar los mejores y peores casos para cada algoritmo.
 
