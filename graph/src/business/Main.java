@@ -1,4 +1,4 @@
-package businessLogic;
+package business;
 
 public class Main {
 

@@ -1,8 +1,8 @@
-package businessLogic;
+package business;
 
 import java.util.ArrayList;
 
-import data.Graph;
+import data.interfaces.Graph;
 
 public class GraphModel {
 

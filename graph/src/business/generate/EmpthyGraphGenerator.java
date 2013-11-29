@@ -1,4 +1,4 @@
-package businessLogic.generate;
+package business.generate;
 
 public class EmpthyGraphGenerator {
 

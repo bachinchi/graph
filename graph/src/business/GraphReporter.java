@@ -1,6 +1,6 @@
-package businessLogic;
+package business;
 
-import data.Graph;
+import data.interfaces.Graph;
 
 public class GraphReporter {
         public int getGraphDensity(final Graph graph) {
