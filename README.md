@@ -12,14 +12,14 @@ Funcionalidades y características mínimas
 * Interfaz gráfica de usuario.
 * Reporte descriptivo de grafo: Densidad del grafo, ¿es circuito, arbol, camino hamiltoniano, ciclo euleriano, etc.?
 * Aplicación de diversos algoritmos sobre el grafo y reportes de ejecución.
-** Conectividad
-** Isomorfismo de grafos
-** Algoritmos de camino más corto
-*** Dijkstra
-*** Floyd - Warshall
-** Algoritmo de Prim
-** Algoritmo de Kruskal
-** Algoritmo de Flujo Maximo (Maximum flow)
+* Conectividad
+* Isomorfismo de grafos
+* Algoritmos de camino más corto
+* Dijkstra
+* Floyd - Warshall
+* Algoritmo de Prim
+* Algoritmo de Kruskal
+* Algoritmo de Flujo Maximo (Maximum flow)
 
 Funcionalidades y características adicionales
 * Inclusión de grafos implementando problemas comunes de la teoría de grafos u otros temas didacticos (ej. Problema del viajero, Puentes de Königsberg, Coloreado de grafos).
