@@ -1,6 +1,5 @@
 package data;
 
-import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -21,21 +20,18 @@ public class AdjacencyMatrixGraph implements Graph {
 
         @Override
         public void addEdge(final int a, final int b, final boolean directed) {
-                if (matrix[a][b] == 0)
-                        if (directed)
-                                matrix[a][b] = 1;
+                if (matrix[b][a] == 0)
+                        if(directed)
+                                matrix[b][a] = 1;
                         else
-                                matrix[a][b] = -1;
+                                matrix[b][a] = -1;
         }
 
         @Override
         public void addEdge(final int a, final int b, final boolean directed,
                         final int weight) {
-                if (matrix[a][b] == 0)
-                        if (directed)
-                                matrix[a][b] = weight;
-                        else
-                                matrix[a][b] = -weight;
+                if (matrix[b][a] == 0)
+                        matrix[b][a] = weight;
         }
 
         @Override
@@ -72,7 +68,14 @@ public class AdjacencyMatrixGraph implements Graph {
 
         @Override
         public String toString() {
-                return "AdjacencyMatrixGraph [n=" + n + ", matrix="
-                                + Arrays.toString(matrix) + "]";
+                final StringBuilder matrixString = new StringBuilder();
+                for (int i = 0; i < matrix[0].length; i++) {
+                        for (int j = 0; j < matrix[0].length; j++)
+                                matrixString.append(String
+                                                .valueOf(matrix[i][j]) + " ");
+                        matrixString.append("\n");
+                }
+                return "AdjacencyMatrixGraph [n=" + n + ",matrix=\n"
+                                + matrixString.toString() + "]";
         }
 }

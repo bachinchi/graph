@@ -22,34 +22,16 @@ public class AdjacencyListGraph implements Graph {
 
         @Override
         public void addEdge(final int a, final int b, final boolean directed) {
-                LinkedHashMap<Integer, Integer> adjacent = adjList.get(a);
-                final LinkedHashMap<Integer, Integer> inner = new LinkedHashMap<Integer, Integer>();
-                if (adjacent == null) {
-                        adjacent = new LinkedHashMap<Integer, Integer>();
-                        adjList.put(a, adjacent);
-                }
-                if (directed)
-                        inner.put(b, 1);
+                if(directed)
+                        adjList.get(a).put(b, 1);
                 else
-                        inner.put(b, -1);
-                adjList.put(a, inner);
+                        adjList.get(a).put(b, -1);
         }
 
         @Override
         public void addEdge(final int a, final int b, final boolean directed,
                         final int weight) {
-                LinkedHashMap<Integer, Integer> adjacent = adjList.get(a);
-                final LinkedHashMap<Integer, Integer> inner = new LinkedHashMap<Integer, Integer>();
-                if (adjacent == null) {
-                        adjacent = new LinkedHashMap<Integer, Integer>();
-                        adjList.put(a, adjacent);
-                }
-                if (directed)
-                        inner.put(b, weight);
-                else
-                        inner.put(b, -weight);
-                adjList.put(a, inner);
-
+                adjList.get(a).put(b, weight);
         }
 
         @Override

@@ -13,10 +13,13 @@ import data.interfaces.Graph;
 
 public class GraphLoader {
 
-        public static Graph[] getGraphs(final Graph.GRAPH_TYPES type) {
-                final ArrayList<int[]> parsedFile = parseFile(readFile("/data/vertices.txt"));
+        public static Graph[] getGraphs(final String fileName,
+                        final Graph.GRAPH_TYPES type) throws TextFileFormatException {
+                final ArrayList<int[]> parsedFile = parseFile(readFile(fileName));
                 Graph[] graphs;
                 final int numberOfGraphs = parsedFile.get(0)[0];
+                if(parsedFile.get(0).length > 1)
+                        throw new TextFileFormatException();
                 if (type == Graph.GRAPH_TYPES.ADJACENCY_LIST)
                         graphs = new AdjacencyListGraph[numberOfGraphs];
                 else
@@ -25,7 +28,9 @@ public class GraphLoader {
                 for (int i = 0; i < numberOfGraphs; i++) {
                         final int vertexNumber = parsedFile.get(i + lineIndex)[0];
                         final int edgeNumber = parsedFile.get(i + lineIndex)[1];
-                        lineIndex += edgeNumber;
+                        if(parsedFile.get(i + lineIndex).length > 2)
+                                throw new TextFileFormatException();
+                        lineIndex++;
                         if (type == Graph.GRAPH_TYPES.ADJACENCY_LIST)
                                 graphs[i] = new AdjacencyListGraph(vertexNumber);
                         else
@@ -34,18 +39,20 @@ public class GraphLoader {
                         for (int j = 0; j < edgeNumber; j++) {
                                 final int[] edge = parsedFile
                                                 .get(i + lineIndex);
+                                if(edge.length > 3)
+                                        throw new TextFileFormatException();
                                 final boolean directed = edge[2] > 0 ? true
                                                 : false;
                                 graphs[i].addEdge(edge[0], edge[1], directed,
                                                 edge[2]);
-                                lineIndex++;
+                                if (j + 1 < edgeNumber)
+                                        lineIndex++;
                         }
                 }
                 return graphs;
         }
 
-        private static ArrayList<int[]> parseFile(
-                        final ArrayList<String> strings) {
+        private static ArrayList<int[]> parseFile(final ArrayList<String> strings) {
                 final ArrayList<int[]> answer = new ArrayList<int[]>();
                 for (final String str : strings) {
                         final String[] lineString = str.split(" ");
