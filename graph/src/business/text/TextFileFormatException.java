@@ -7,13 +7,19 @@ public class TextFileFormatException extends Exception {
          */
         private static final long serialVersionUID = 3537912818064691050L;
 
+        /**
+         * Parameterless Constructor
+         */
         public TextFileFormatException() {
-                // TODO Auto-generated constructor stub
         }
 
-        public TextFileFormatException(final String arg0) {
-                super(arg0);
-                // TODO Auto-generated constructor stub
+        /**
+         * Accepts a message
+         * 
+         * @param message
+         */
+        public TextFileFormatException(final String message) {
+                super(message);
         }
 
         public TextFileFormatException(final String arg0, final Throwable arg1) {

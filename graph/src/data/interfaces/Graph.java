@@ -3,26 +3,30 @@ package data.interfaces;
 import java.util.Map;
 
 /**
- * @author BryanAlberto
- * Structure bases in
- * http://opendatastructures.org/ods-java/12_Graphs.html
+ * @author BryanAlberto Structure based in
+ *         http://opendatastructures.org/ods-java/12_Graphs.html
  */
-public interface Graph {
-        public enum GRAPH_TYPES {
-                ADJACENCY_MATRIX, ADJACENCY_LIST
+public abstract class Graph {
+
+        public static enum GRAPH_TYPE {
+                ADJACENCY_MATRIX, ADJACENCY_LIST, OBJECT_GRAPH
         }
 
-        public void addEdge(int a, int b, boolean directed);
+        public GRAPH_TYPE graph_type;
 
-        public void addEdge(int a, int b, boolean directed, int weight);
+        public boolean directed;
 
-        public int getEdge(int a, int b);
+        public abstract void addEdge(int a, int b);
+
+        public abstract void addEdge(int a, int b, int weight);
+
+        public abstract int getEdge(int a, int b);
 
         // public int getEdges();
 
-        public Map<Integer, Integer> inEdges(int a);
+        public abstract Map<Integer, Integer> inEdges(int a);
 
-        public Map<Integer, Integer> outEdges(int a);
+        public abstract Map<Integer, Integer> outEdges(int a);
 
-        public boolean removeEdge(int a, int b);
+        public abstract boolean removeEdge(int a, int b);
 }

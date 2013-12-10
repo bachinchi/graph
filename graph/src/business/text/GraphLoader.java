@@ -9,42 +9,51 @@ import java.util.ArrayList;
 
 import data.AdjacencyListGraph;
 import data.AdjacencyMatrixGraph;
+import data.ObjectGraph;
 import data.interfaces.Graph;
 
 public class GraphLoader {
 
         public static Graph[] getGraphs(final String fileName,
-                        final Graph.GRAPH_TYPES type) throws TextFileFormatException {
-                final ArrayList<int[]> parsedFile = parseFile(readFile(fileName));
+                        final Graph.GRAPH_TYPE type)
+                        throws TextFileFormatException {
+                final ArrayList<char[]> parsedFile = parseFile(readFile(fileName));
                 Graph[] graphs;
                 final int numberOfGraphs = parsedFile.get(0)[0];
-                if(parsedFile.get(0).length > 1)
+                if (parsedFile.get(0).length > 1 || numberOfGraphs < 1)
                         throw new TextFileFormatException();
-                if (type == Graph.GRAPH_TYPES.ADJACENCY_LIST)
+                if (type == Graph.GRAPH_TYPE.ADJACENCY_LIST)
                         graphs = new AdjacencyListGraph[numberOfGraphs];
-                else
+                else if (type == Graph.GRAPH_TYPE.ADJACENCY_MATRIX)
                         graphs = new AdjacencyMatrixGraph[numberOfGraphs];
+                else
+                        graphs = new ObjectGraph[numberOfGraphs];
                 int lineIndex = 1;
                 for (int i = 0; i < numberOfGraphs; i++) {
                         final int vertexNumber = parsedFile.get(i + lineIndex)[0];
                         final int edgeNumber = parsedFile.get(i + lineIndex)[1];
-                        if(parsedFile.get(i + lineIndex).length > 2)
+                        final boolean directed = parsedFile.get(i + lineIndex)[2] == 'd' ? true
+                                        : false;
+                        if (parsedFile.get(i + lineIndex).length > 3
+                                        || vertexNumber < 1 || edgeNumber < 0)
                                 throw new TextFileFormatException();
                         lineIndex++;
-                        if (type == Graph.GRAPH_TYPES.ADJACENCY_LIST)
-                                graphs[i] = new AdjacencyListGraph(vertexNumber);
-                        else
+                        if (type == Graph.GRAPH_TYPE.ADJACENCY_LIST)
+                                graphs[i] = new AdjacencyListGraph(
+                                                vertexNumber, directed);
+                        else if (type == Graph.GRAPH_TYPE.ADJACENCY_MATRIX)
                                 graphs[i] = new AdjacencyMatrixGraph(
-                                                vertexNumber);
+                                                vertexNumber, directed);
+                        else
+                                graphs[i] = new ObjectGraph(vertexNumber,
+                                                directed);
                         for (int j = 0; j < edgeNumber; j++) {
-                                final int[] edge = parsedFile
-                                                .get(i + lineIndex);
-                                if(edge.length > 3)
+                                final char[] edge = parsedFile.get(i
+                                                + lineIndex);
+                                if (edge.length > 3 || edge[0] < 0
+                                                || edge[1] < 0 || edge[2] == 0)
                                         throw new TextFileFormatException();
-                                final boolean directed = edge[2] > 0 ? true
-                                                : false;
-                                graphs[i].addEdge(edge[0], edge[1], directed,
-                                                edge[2]);
+                                graphs[i].addEdge(edge[0], edge[1], edge[2]);
                                 if (j + 1 < edgeNumber)
                                         lineIndex++;
                         }
@@ -52,15 +61,15 @@ public class GraphLoader {
                 return graphs;
         }
 
-        private static ArrayList<int[]> parseFile(final ArrayList<String> strings) {
-                final ArrayList<int[]> answer = new ArrayList<int[]>();
+        private static ArrayList<char[]> parseFile(
+                        final ArrayList<String> strings) {
+                final ArrayList<char[]> answer = new ArrayList<char[]>();
                 for (final String str : strings) {
                         final String[] lineString = str.split(" ");
-                        final int[] numberArray = new int[lineString.length];
+                        final char[] charArray = new char[lineString.length];
                         for (int i = 0; i < lineString.length; i++)
-                                numberArray[i] = Integer
-                                                .parseInt(lineString[i]);
-                        answer.add(numberArray);
+                                charArray[i] = lineString[i].charAt(0);
+                        answer.add(charArray);
                 }
                 return answer;
         }

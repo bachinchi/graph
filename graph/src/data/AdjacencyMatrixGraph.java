@@ -8,28 +8,28 @@ import data.interfaces.Graph;
 /**
  * @author BryanAlberto
  */
-public class AdjacencyMatrixGraph implements Graph {
+public class AdjacencyMatrixGraph extends Graph {
+
+        public static final GRAPH_TYPE TYPE = Graph.GRAPH_TYPE.ADJACENCY_MATRIX;
 
         private final int n;
         private final int[][] matrix;
 
-        public AdjacencyMatrixGraph(final int _n) {
+        public AdjacencyMatrixGraph(final int _n, final boolean _directed) {
+                graph_type = GRAPH_TYPE.ADJACENCY_MATRIX;
                 n = _n;
+                directed = _directed;
                 matrix = new int[n][n];
         }
 
         @Override
-        public void addEdge(final int a, final int b, final boolean directed) {
+        public void addEdge(final int a, final int b) {
                 if (matrix[b][a] == 0)
-                        if(directed)
-                                matrix[b][a] = 1;
-                        else
-                                matrix[b][a] = -1;
+                        matrix[b][a] = 1;
         }
 
         @Override
-        public void addEdge(final int a, final int b, final boolean directed,
-                        final int weight) {
+        public void addEdge(final int a, final int b, final int weight) {
                 if (matrix[b][a] == 0)
                         matrix[b][a] = weight;
         }

@@ -8,29 +8,27 @@ import data.interfaces.Graph;
 /**
  * @author BryanAlberto
  */
-public class AdjacencyListGraph implements Graph {
+public class AdjacencyListGraph extends Graph {
 
         private final int n;
         private final LinkedHashMap<Integer, LinkedHashMap<Integer, Integer>> adjList;
 
-        public AdjacencyListGraph(final int _n) {
+        public AdjacencyListGraph(final int _n, final boolean _directed) {
+                graph_type = GRAPH_TYPE.ADJACENCY_LIST;
                 n = _n;
+                directed = _directed;
                 adjList = new LinkedHashMap<Integer, LinkedHashMap<Integer, Integer>>();
                 for (int i = 0; i < n; i++)
                         adjList.put(i, new LinkedHashMap<Integer, Integer>());
         }
 
         @Override
-        public void addEdge(final int a, final int b, final boolean directed) {
-                if(directed)
-                        adjList.get(a).put(b, 1);
-                else
-                        adjList.get(a).put(b, -1);
+        public void addEdge(final int a, final int b) {
+                adjList.get(a).put(b, 1);
         }
 
         @Override
-        public void addEdge(final int a, final int b, final boolean directed,
-                        final int weight) {
+        public void addEdge(final int a, final int b, final int weight) {
                 adjList.get(a).put(b, weight);
         }
 
