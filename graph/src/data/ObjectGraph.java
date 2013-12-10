@@ -3,11 +3,8 @@ package data;
 import java.util.HashSet;
 import java.util.Map;
 
-import data.interfaces.Graph;
-
 public class ObjectGraph extends Graph {
 
-        HashSet<Vertex> vertices;
         HashSet<Edge> edges;
 
         public ObjectGraph(final int _n, final boolean _directed) {
@@ -26,7 +23,25 @@ public class ObjectGraph extends Graph {
         }
 
         @Override
-        public int getEdge(final int a, final int b) {
+        public int getEdgeWeight(final int a, final int b) {
+                // TODO Auto-generated method stub
+                return 0;
+        }
+
+        @Override
+        public Edge[] getEdges() {
+                // TODO Auto-generated method stub
+                return null;
+        }
+
+        @Override
+        public int getEdgesNumber() {
+                // TODO Auto-generated method stub
+                return 0;
+        }
+
+        @Override
+        public int getVerticesNumber() {
                 // TODO Auto-generated method stub
                 return 0;
         }

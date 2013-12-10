@@ -3,8 +3,6 @@ package data;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import data.interfaces.Graph;
-
 /**
  * @author BryanAlberto
  */
@@ -33,8 +31,40 @@ public class AdjacencyListGraph extends Graph {
         }
 
         @Override
-        public int getEdge(final int a, final int b) {
+        public int getEdgeWeight(final int a, final int b) {
+                if (adjList.get(a).get(b) == null)
+                        return 0;
                 return adjList.get(a).get(b);
+        }
+
+        @Override
+        public Edge[] getEdges() {
+                final Edge[] answer = new Edge[getEdgesNumber()];
+                int index = 0;
+                for (int i = 0; i < n; i++) {
+                        final LinkedHashMap<Integer, Integer> image = adjList
+                                        .get(i);
+                        for (int j = 0; j < n; j++)
+                                if (image.containsKey(j)) {
+                                        answer[index] = new Edge(i, j,
+                                                        image.get(j));
+                                        index++;
+                                }
+                }
+                return answer;
+        }
+
+        @Override
+        public int getEdgesNumber() {
+                int counter = 0;
+                for (int i = 0; i < n; i++)
+                        counter += adjList.get(i).size();
+                return counter;
+        }
+
+        @Override
+        public int getVerticesNumber() {
+                return n;
         }
 
         @Override
@@ -62,7 +92,7 @@ public class AdjacencyListGraph extends Graph {
 
         @Override
         public String toString() {
-                return "AdjacencyListGraph [n=" + n + ", adjList=" + adjList
-                                + "]";
+                return "AdjacencyListGraph [n=" + n + ",directed=" + directed
+                                + ", adjList=" + adjList + "]";
         }
 }

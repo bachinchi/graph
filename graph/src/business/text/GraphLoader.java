@@ -9,15 +9,15 @@ import java.util.ArrayList;
 
 import data.AdjacencyListGraph;
 import data.AdjacencyMatrixGraph;
+import data.Graph;
 import data.ObjectGraph;
-import data.interfaces.Graph;
 
 public class GraphLoader {
 
         public static Graph[] getGraphs(final String fileName,
                         final Graph.GRAPH_TYPE type)
                         throws TextFileFormatException {
-                final ArrayList<char[]> parsedFile = parseFile(readFile(fileName));
+                final ArrayList<int[]> parsedFile = parseFile(readFile(fileName));
                 Graph[] graphs;
                 final int numberOfGraphs = parsedFile.get(0)[0];
                 if (parsedFile.get(0).length > 1 || numberOfGraphs < 1)
@@ -32,12 +32,12 @@ public class GraphLoader {
                 for (int i = 0; i < numberOfGraphs; i++) {
                         final int vertexNumber = parsedFile.get(i + lineIndex)[0];
                         final int edgeNumber = parsedFile.get(i + lineIndex)[1];
-                        final boolean directed = parsedFile.get(i + lineIndex)[2] == 'd' ? true
-                                        : false;
+                        boolean directed = false;
+                        if (parsedFile.get(i + lineIndex).length == 3)
+                                directed = true;
                         if (parsedFile.get(i + lineIndex).length > 3
                                         || vertexNumber < 1 || edgeNumber < 0)
                                 throw new TextFileFormatException();
-                        lineIndex++;
                         if (type == Graph.GRAPH_TYPE.ADJACENCY_LIST)
                                 graphs[i] = new AdjacencyListGraph(
                                                 vertexNumber, directed);
@@ -47,11 +47,12 @@ public class GraphLoader {
                         else
                                 graphs[i] = new ObjectGraph(vertexNumber,
                                                 directed);
+                        lineIndex++;
                         for (int j = 0; j < edgeNumber; j++) {
-                                final char[] edge = parsedFile.get(i
-                                                + lineIndex);
+                                final int[] edge = parsedFile
+                                                .get(i + lineIndex);
                                 if (edge.length > 3 || edge[0] < 0
-                                                || edge[1] < 0 || edge[2] == 0)
+                                                || edge[1] < 0 || edge[2] <= 0)
                                         throw new TextFileFormatException();
                                 graphs[i].addEdge(edge[0], edge[1], edge[2]);
                                 if (j + 1 < edgeNumber)
@@ -61,14 +62,13 @@ public class GraphLoader {
                 return graphs;
         }
 
-        private static ArrayList<char[]> parseFile(
-                        final ArrayList<String> strings) {
-                final ArrayList<char[]> answer = new ArrayList<char[]>();
+        public static ArrayList<int[]> parseFile(final ArrayList<String> strings) {
+                final ArrayList<int[]> answer = new ArrayList<int[]>();
                 for (final String str : strings) {
                         final String[] lineString = str.split(" ");
-                        final char[] charArray = new char[lineString.length];
+                        final int[] charArray = new int[lineString.length];
                         for (int i = 0; i < lineString.length; i++)
-                                charArray[i] = lineString[i].charAt(0);
+                                charArray[i] = Integer.parseInt(lineString[i]);
                         answer.add(charArray);
                 }
                 return answer;
@@ -78,7 +78,7 @@ public class GraphLoader {
          * Code based on 2013-10-15 class example. TODO: Throw
          * TextFileFormatException when the text file isnt correct.
          */
-        private static ArrayList<String> readFile(final String fileName) {
+        public static ArrayList<String> readFile(final String fileName) {
                 // throws TextFileFormatException {
                 final ArrayList<String> answer = new ArrayList<String>();
 

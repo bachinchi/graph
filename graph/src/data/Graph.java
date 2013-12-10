@@ -1,4 +1,4 @@
-package data.interfaces;
+package data;
 
 import java.util.Map;
 
@@ -20,9 +20,13 @@ public abstract class Graph {
 
         public abstract void addEdge(int a, int b, int weight);
 
-        public abstract int getEdge(int a, int b);
+        public abstract int getEdgeWeight(int a, int b);
 
-        // public int getEdges();
+        public abstract Edge[] getEdges();
+
+        public abstract int getEdgesNumber();
+
+        public abstract int getVerticesNumber();
 
         public abstract Map<Integer, Integer> inEdges(int a);
 

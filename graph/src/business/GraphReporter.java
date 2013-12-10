@@ -1,10 +1,21 @@
 package business;
 
-import data.interfaces.Graph;
+import data.Graph;
 
 public class GraphReporter {
-        public int getGraphDensity(final Graph graph) {
-                return 1;
+
+        /**
+         * D = 2E/(V*(V-1))
+         * 
+         * @param graph
+         * @return
+         */
+        public double getGraphDensity(final Graph graph) {
+                final double density = 2
+                                * graph.getEdgesNumber()
+                                / (graph.getVerticesNumber() * (graph
+                                                .getVerticesNumber() - 1));
+                return density;
         }
 
         public boolean isCircuit(final Graph graph) {

@@ -3,8 +3,6 @@ package data;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import data.interfaces.Graph;
-
 /**
  * @author BryanAlberto
  */
@@ -35,8 +33,37 @@ public class AdjacencyMatrixGraph extends Graph {
         }
 
         @Override
-        public int getEdge(final int a, final int b) {
+        public int getEdgeWeight(final int a, final int b) {
                 return matrix[a][b];
+        }
+
+        @Override
+        public Edge[] getEdges() {
+                final Edge[] answer = new Edge[getEdgesNumber()];
+                int index = 0;
+                for (int i = 0; i < n; i++)
+                        for (int j = 0; j < n; j++)
+                                if (matrix[j][i] != 0) {
+                                        answer[index] = new Edge(i, j,
+                                                        matrix[j][i]);
+                                        index++;
+                                }
+                return answer;
+        }
+
+        @Override
+        public int getEdgesNumber() {
+                int counter = 0;
+                for (int i = 0; i < n; i++)
+                        for (int j = 0; j < n; j++)
+                                if (matrix[i][j] != 0)
+                                        counter++;
+                return counter;
+        }
+
+        @Override
+        public int getVerticesNumber() {
+                return n;
         }
 
         @Override
@@ -69,13 +96,13 @@ public class AdjacencyMatrixGraph extends Graph {
         @Override
         public String toString() {
                 final StringBuilder matrixString = new StringBuilder();
-                for (int i = 0; i < matrix[0].length; i++) {
-                        for (int j = 0; j < matrix[0].length; j++)
+                for (int i = 0; i < n; i++) {
+                        for (int j = 0; j < n; j++)
                                 matrixString.append(String
                                                 .valueOf(matrix[i][j]) + " ");
                         matrixString.append("\n");
                 }
-                return "AdjacencyMatrixGraph [n=" + n + ",matrix=\n"
-                                + matrixString.toString() + "]";
+                return "AdjacencyMatrixGraph [n=" + n + ",directed=" + directed
+                                + ", matrix=\n" + matrixString.toString() + "]";
         }
 }

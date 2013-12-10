@@ -1,12 +1,7 @@
-//un grafo es dirigido completamente o no
-// asi que la notación de negativos está mal
-// idearse una forma que la matrix de adyacencia pueda tener multiples aristas entre dos grafos
-// implementar dijkstra para la proxima entrega
-// en los tres backends.
 3
-2 1 d
+2 1 0
 0 1 1
-3 3 d
+3 3 0
 0 1 1
 1 2 3
 2 0 1

@@ -2,7 +2,7 @@ package business;
 
 import java.util.ArrayList;
 
-import data.interfaces.Graph;
+import data.Graph;
 
 public class GraphModel {
 
