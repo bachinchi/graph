@@ -12,7 +12,6 @@ public class AdjacencyListGraph extends Graph {
         private final LinkedHashMap<Integer, LinkedHashMap<Integer, Integer>> adjList;
 
         public AdjacencyListGraph(final int _n, final boolean _directed) {
-                graph_type = GRAPH_TYPE.ADJACENCY_LIST;
                 n = _n;
                 directed = _directed;
                 adjList = new LinkedHashMap<Integer, LinkedHashMap<Integer, Integer>>();
@@ -28,13 +27,6 @@ public class AdjacencyListGraph extends Graph {
         @Override
         public void addEdge(final int a, final int b, final int weight) {
                 adjList.get(a).put(b, weight);
-        }
-
-        @Override
-        public int getEdgeWeight(final int a, final int b) {
-                if (adjList.get(a).get(b) == null)
-                        return 0;
-                return adjList.get(a).get(b);
         }
 
         @Override
@@ -60,6 +52,13 @@ public class AdjacencyListGraph extends Graph {
                 for (int i = 0; i < n; i++)
                         counter += adjList.get(i).size();
                 return counter;
+        }
+
+        @Override
+        public int getEdgeWeight(final int a, final int b) {
+                if (adjList.get(a).get(b) == null)
+                        return 0;
+                return adjList.get(a).get(b);
         }
 
         @Override

@@ -23,12 +23,6 @@ public class ObjectGraph extends Graph {
         }
 
         @Override
-        public int getEdgeWeight(final int a, final int b) {
-                // TODO Auto-generated method stub
-                return 0;
-        }
-
-        @Override
         public Edge[] getEdges() {
                 // TODO Auto-generated method stub
                 return null;
@@ -36,6 +30,12 @@ public class ObjectGraph extends Graph {
 
         @Override
         public int getEdgesNumber() {
+                // TODO Auto-generated method stub
+                return 0;
+        }
+
+        @Override
+        public int getEdgeWeight(final int a, final int b) {
                 // TODO Auto-generated method stub
                 return 0;
         }

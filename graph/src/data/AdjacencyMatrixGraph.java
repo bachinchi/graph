@@ -8,13 +8,10 @@ import java.util.Map;
  */
 public class AdjacencyMatrixGraph extends Graph {
 
-        public static final GRAPH_TYPE TYPE = Graph.GRAPH_TYPE.ADJACENCY_MATRIX;
-
         private final int n;
         private final int[][] matrix;
 
         public AdjacencyMatrixGraph(final int _n, final boolean _directed) {
-                graph_type = GRAPH_TYPE.ADJACENCY_MATRIX;
                 n = _n;
                 directed = _directed;
                 matrix = new int[n][n];
@@ -30,11 +27,6 @@ public class AdjacencyMatrixGraph extends Graph {
         public void addEdge(final int a, final int b, final int weight) {
                 if (matrix[b][a] == 0)
                         matrix[b][a] = weight;
-        }
-
-        @Override
-        public int getEdgeWeight(final int a, final int b) {
-                return matrix[a][b];
         }
 
         @Override
@@ -59,6 +51,11 @@ public class AdjacencyMatrixGraph extends Graph {
                                 if (matrix[i][j] != 0)
                                         counter++;
                 return counter;
+        }
+
+        @Override
+        public int getEdgeWeight(final int a, final int b) {
+                return matrix[b][a];
         }
 
         @Override

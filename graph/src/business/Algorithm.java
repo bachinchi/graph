@@ -1,7 +1,5 @@
 package business;
 
-import java.util.Map;
-
 import data.Graph;
 
 public class Algorithm {
@@ -14,13 +12,13 @@ public class Algorithm {
          * @param target
          * @return
          */
-        public int DijkstraAlgorithm(final Graph graph, final int source,
-                        final int target) {
+        public static int DijkstraAlgorithm(final Graph graph,
+                        final int source, final int target) {
                 return 1;
         }
 
         /**
-         * http://algs4.cs.princeton.edu/44sp/FloydWarshall.java.html
+         * Bases on pseudo-code in English Wikipedia
          * 
          * @param graph
          * @param source
@@ -36,32 +34,39 @@ public class Algorithm {
                         for (int j = 0; j < vertexNumber; j++)
                                 dist[i][j] = Double.POSITIVE_INFINITY;
 
-                for (int i = 0; i < vertexNumber; i++) {
-                        for (int j = 0; j < vertexNumber; j++) {
+                for (int i = 0; i < vertexNumber; i++)
+                        for (int j = 0; j < vertexNumber; j++)
                                 if (graph.getEdgeWeight(i, j) != 0)
                                         dist[i][j] = graph.getEdgeWeight(i, j);
-                        }
-                }
 
-                for (int i = 0; i < vertexNumber; i++) {
-                        for (int j = 0; j < vertexNumber; j++) {
-                                System.out.print(dist[j][i] + "\t");
-                        }
-                        System.out.println();
-                }
-
-                // Wikipedia
-                for (int k = 0; k < vertexNumber; k++) {
-                        for (int i = 0; i < vertexNumber; i++) {
+                for (int k = 0; k < vertexNumber; k++)
+                        for (int i = 0; i < vertexNumber; i++)
                                 for (int j = 0; j < vertexNumber; j++)
                                         if (dist[i][j] > dist[i][k]
                                                         + dist[k][j])
                                                 dist[i][j] = dist[i][k]
                                                                 + dist[k][j];
-                        }
-                }
-                //return dist[target][source];
-                return (int)dist[source][target];
+                return (int) dist[source][target];
+        }
+
+        /**
+         * 
+         */
+        public static double getGraphDensity(final Graph graph) {
+                double result = -1;
+                result = 2.0
+                                * graph.getEdgesNumber()
+                                / (graph.getVerticesNumber() * (graph
+                                                .getVerticesNumber() - 1));
+                return result;
+        }
+
+        /**
+         * 
+         */
+        public static boolean GraphIsomorphism(final Graph graph1,
+                        final Graph graph2) {
+                return true;
         }
 
         public int getGraphConnectivity(final Graph graph, final int source,

@@ -55,6 +55,9 @@ public class GraphLoader {
                                                 || edge[1] < 0 || edge[2] <= 0)
                                         throw new TextFileFormatException();
                                 graphs[i].addEdge(edge[0], edge[1], edge[2]);
+                                if (!directed)
+                                        graphs[i].addEdge(edge[1], edge[0],
+                                                        edge[2]);
                                 if (j + 1 < edgeNumber)
                                         lineIndex++;
                         }

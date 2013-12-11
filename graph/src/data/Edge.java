@@ -6,6 +6,12 @@ public class Edge {
         private final int target;
         private final int weight;
 
+        public Edge(final int _source, final int _target) {
+                source = _source;
+                target = _target;
+                weight = 1;
+        }
+
         public Edge(final int _source, final int _target, final int _weight) {
                 source = _source;
                 target = _target;

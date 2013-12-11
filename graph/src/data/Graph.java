@@ -20,11 +20,11 @@ public abstract class Graph {
 
         public abstract void addEdge(int a, int b, int weight);
 
-        public abstract int getEdgeWeight(int a, int b);
-
         public abstract Edge[] getEdges();
 
         public abstract int getEdgesNumber();
+
+        public abstract int getEdgeWeight(int a, int b);
 
         public abstract int getVerticesNumber();
 
